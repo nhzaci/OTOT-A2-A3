@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: otot-a1_nodeserver:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 3000
+          resources:
+            limits:
+              cpu: 40m
+              memory: 100Mi
